@@ -1,11 +1,11 @@
 import 'dart:developer'as dev;
 
+import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:math';
-
 import 'package:oryx_prj1/services/apiservice.dart';
 
 class TimeNattendenceHr extends StatefulWidget {
@@ -16,24 +16,25 @@ class TimeNattendenceHr extends StatefulWidget {
 }
 
 class _TimeNattendenceHrState extends State<TimeNattendenceHr> {
+  int tag=0;
+  List<String> options=['site','showroom','factory'];
+  List<double> latitudelists=[26.258694,26.258725,26.215939];//site showroom factory's latitudes
+  List<double> longitudelists=[50.646000,50.645848,50.655116];//site showroom factory's longitudes
+
+ /* List<double> latitudelists=[12.906285,12.913958,12.879077];//site showroom factory's latitudes
+  List<double> longitudelists=[74.828268,74.847951,74.853015];//site showroom factory's longitudes*/
+
+  List<String> premisisidlists=["PSID1","PSID2","PSID3"];//site showroom factory's premisisids;
+
   late GoogleMapController _controller;
   late Position _position;
   late Marker currentlocationmarker;
   late Marker destinationlocationmarker;
 
+ double _destinationLatitude=26.258694;
+ double _destinationLongitude=50.646000;
 
-  final Position _destinationposition = Position(
-
-      //longitude:  50.646000, bahrein location final
-      longitude: 74.853216,
-      timestamp: DateTime.now(),
-      //latitude: 26.258694, bahrein location final
-      latitude: 12.878930,
-      speed: 0.0,
-      speedAccuracy: 0.0,
-      accuracy: 20.0,
-      altitude: 2,
-      heading: 0.0);
+   late Position _destinationposition ;
 
   int distancetolocation = 0;
   bool _loading = true;
@@ -46,6 +47,18 @@ class _TimeNattendenceHrState extends State<TimeNattendenceHr> {
 
   @override
   Widget build(BuildContext context) {
+    _destinationposition = Position(
+        longitude:  _destinationLongitude, //bahrein location final
+        //longitude: 74.853216, // sample location kadri
+        timestamp: DateTime.now(),
+        latitude: _destinationLatitude, //bahrein location final
+        //latitude: 12.878930, //sample location kadri
+        speed: 0.0,
+        speedAccuracy: 0.0,
+        accuracy: 20.0,
+        altitude: 2,
+        heading: 0.0);
+
     if (!_loading) {
       currentlocationmarker = Marker(
         markerId: const MarkerId("1"),
@@ -66,19 +79,39 @@ class _TimeNattendenceHrState extends State<TimeNattendenceHr> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Get My Location"),
+        title: const Text("Attendance"),
         centerTitle: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+           ChipsChoice<int>.single(value: tag, onChanged: (val){
+             setState(() {
+               tag=val;
+               _destinationLatitude=latitudelists[val];
+               _destinationLongitude=longitudelists[val];
+             });
+           }, choiceItems: C2Choice.listFrom<int,String>(source: options, value: (i,v)=>i, label: (i,v)=>v,),
+           wrapped: true,
+             choiceActiveStyle: const C2ChoiceStyle(color : Colors.white,
+                 labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                 borderRadius: BorderRadius.all(Radius.circular(14)),
+             borderColor:Colors.red,
+               backgroundColor: Colors.red,
+             ),
+             choiceStyle: const C2ChoiceStyle(
+                 color: Colors.grey,
+               labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                 borderRadius: BorderRadius.all(Radius.circular(14)),
+               borderColor: Colors.black12,
+               ),),
           Expanded(
             child: _loading
                 ? const Center(child: CircularProgressIndicator(semanticsValue: "Loading..",))
                 :  GoogleMap(
               initialCameraPosition: CameraPosition(
-                  target:
-                  LatLng(_position.latitude, _position.longitude)),
+                target:
+                LatLng(_position.latitude, _position.longitude)),
               mapType: MapType.hybrid,
               markers: _createMarker(),
               // polylines: _showpolyline?Set<Polyline>.of(polylines.values):const {},
@@ -99,8 +132,18 @@ class _TimeNattendenceHrState extends State<TimeNattendenceHr> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    MyApi.postPunchedTime(name: 'MANZOOR', badgenumber: '103011', checktime: '13-05-2022',
-                        ctime: '17:28:12', contractorid: '1', shiftid: '1', checktype: false);
+                    if(distancetolocation!=0)
+                    {
+                      Get.snackbar("Proximity", "Please go inside the location to punch.",
+                          snackPosition: SnackPosition.TOP,
+                          backgroundColor: Colors.red.shade600,
+                          colorText: Colors.white,
+                          margin: const EdgeInsets.all(10),
+                          duration: const Duration(seconds: 2));
+                      return;
+                    }
+                    MyApi.postPunchedTime(name: 'MANZOOR', badgenumber: '103011',premisisid: premisisidlists[tag],
+                        contractorid: '1', shiftid: '1', checktype: false);
                   },
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(const Size(0, 40)),
@@ -111,8 +154,18 @@ class _TimeNattendenceHrState extends State<TimeNattendenceHr> {
 
                 ElevatedButton(
                   onPressed: () {
-                    MyApi.postPunchedTime(name: 'MANZOOR', badgenumber: '103011', checktime: '13-05-2022',
-                        ctime: '17:38:12', contractorid: '1', shiftid: '1', checktype: true);
+                    if(distancetolocation!=0)
+                      {
+                        Get.snackbar("Proximity", "Please go inside the location to punch.",
+                            snackPosition: SnackPosition.TOP,
+                            backgroundColor: Colors.red.shade600,
+                            colorText: Colors.white,
+                            margin: const EdgeInsets.all(10),
+                            duration: const Duration(seconds: 2));
+                        return;
+                      }
+                    MyApi.postPunchedTime(name: 'MANZOOR', badgenumber: '103011',premisisid: premisisidlists[tag],
+                        contractorid: '1', shiftid: '1', checktype: true);
                   },
                   style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(const Size(0, 40)),
@@ -206,8 +259,6 @@ class _TimeNattendenceHrState extends State<TimeNattendenceHr> {
       double circleRad = (distancebtwTwopoints / 2); //divide by 2 to get radius
       double zoomlevel = getZoomLevel(circleRad);
 
-      print("\n\n\n $zoomlevel  ${_position.latitude} ${_position.longitude}");
-      //14.30056098673837  12.8790826 74.8531424
 
       _controller.animateCamera(CameraUpdate.newLatLngZoom(
           LatLng(_position.latitude, _position.longitude), zoomlevel));
@@ -217,10 +268,6 @@ class _TimeNattendenceHrState extends State<TimeNattendenceHr> {
 
   Set<Marker> _createMarker() {
     return <Marker>{
-      /* Marker(markerId: const MarkerId("1"),
-          position:  LatLng(_position.latitude, _position.longitude),
-      icon: BitmapDescriptor.defaultMarker,
-      infoWindow: const InfoWindow(title: "Current location"),),*/
       currentlocationmarker,
       destinationlocationmarker,
     };

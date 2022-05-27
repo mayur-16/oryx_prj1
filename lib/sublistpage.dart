@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'models/sublistitems.dart';
 
@@ -23,7 +24,10 @@ class _SublistPageState extends State<SublistPage> {
 
       //backgroundColor: Colors.pinkAccent.shade100,
       appBar: AppBar(
-        title: Text(sublistpageitems.elementAt(indexval).pagetitle),
+        title: Image.asset("assets/oryx_logo.jpeg",height: 80,width: 120),
+        bottom: PreferredSize(child: Text(sublistpageitems.elementAt(indexval).pagetitle,
+          style: GoogleFonts.merriweather(color: Colors.blue.shade700,fontSize: 17,fontWeight: FontWeight.bold),
+        ), preferredSize: const Size.fromHeight(50)),
         centerTitle: true,
       ),
       body: pageitemsnamesval.isNotEmpty
@@ -38,13 +42,13 @@ class _SublistPageState extends State<SublistPage> {
               onTap: (){
                 Get.toNamed(sublistpageitems.elementAt(indexval).redirectpages.elementAt(pos-1));
               },
-              splashColor: Colors.grey.shade800,
-              overlayColor: MaterialStateProperty.all(Colors.grey.shade500),
+              splashColor: Colors.redAccent.shade100,
+              overlayColor: MaterialStateProperty.all(Colors.redAccent.shade100),
               child: ListTile(
                 //tileColor: Colors.white,
                 leading: Text(pageitemsnamesval.elementAt(pos-1),
                   style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
-                trailing: const Icon(Icons.arrow_right),
+                trailing: const Icon(Icons.arrow_right,color: Colors.red,),
               ),
             );
           },

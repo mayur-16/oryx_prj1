@@ -32,10 +32,15 @@ dependencies:
   http: ^0.13.4
   geolocator: ^8.2.1
   google_maps_flutter: ^2.1.4
-  get: ^4.6.1
-  hive: ^2.1.0
-  hive_flutter: ^1.1.0
+  get: 4.6.1
+  shared_preferences: ^2.0.15
   google_fonts: ^2.3.2
+  pdf: ^3.8.0
+  path_provider: ^2.0.10
+  open_file: ^3.2.1
+  month_picker_dialog: ^0.4.0
+  chips_choice_null_safety: ^2.0.6
+
 
 
   # The following adds the Cupertino Icons font to your application.

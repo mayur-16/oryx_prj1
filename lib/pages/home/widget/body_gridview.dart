@@ -13,67 +13,91 @@ class BodyWidget extends StatefulWidget {
 
 class _BodyWidgetState extends State<BodyWidget> {
   List<HomeIcon> homeIcons = [
-  HomeIcon(
-  icon: ImageIcon(const AssetImage("assets/icons/crm.png"),
-  color: Colors.pinkAccent.shade400),
-  label: "CRM"),
-  HomeIcon(
-  icon: ImageIcon(const AssetImage("assets/icons/supplychain.png"),
-  color: Colors.green.shade900),
-  label: "SUPPLY\nCHAIN"),
-  HomeIcon(
-  icon: ImageIcon(const AssetImage("assets/icons/project.png"),
-  color: Colors.blue.shade900),
-  label: "PROJECTS"),
-  HomeIcon(
-  icon: ImageIcon(const AssetImage("assets/icons/showroom.png"),
-  color: Colors.amber.shade900),
-  label: "E\nSHOWROOM"),
-  HomeIcon(
-  icon: ImageIcon(const AssetImage("assets/icons/warehouse.png"),
-  color: Colors.red.shade900),
-  label: "WMS"),
-  HomeIcon(
-  icon: ImageIcon(const AssetImage("assets/icons/hr.png"),
-  color: Colors.teal.shade700),
-  label: "HR"),
-  HomeIcon(
-  icon: ImageIcon(const AssetImage("assets/icons/maintenance.png"),
-  color: Colors.deepPurple.shade400),
-  label: "MMP"),
-  HomeIcon(
-  icon: ImageIcon(const AssetImage("assets/icons/service.png"),
-  color: Colors.brown.shade400),
-  label: "SMC"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/crm.png"),
+            color: Colors.white),
+        label: "Customer relationship"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/supplychain.png"),
+            color: Colors.white),
+        label: "Purchase &\nSupply chain"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/project.png"),
+            color: Colors.white),
+        label: "Fabrication projects"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/showroom.png"),
+            color: Colors.white),
+        label: "Trading"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/warehouse.png"),
+            color: Colors.white),
+        label: "Materials &\nWarehouse"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/hr.png"),
+            color: Colors.white),
+        label: "Human resource"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/maintenance.png"),
+            color: Colors.white),
+        label: "Finance Reports"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/service.png"),
+            color: Colors.white),
+        label: "Kitchen fittings"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/service.png"),
+            color: Colors.white),
+        label: "Wooden coating"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/service.png"),
+            color: Colors.white),
+        label: "Powder coating"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/service.png"),
+            color: Colors.white),
+        label: "Management reports"),
+    HomeIcon(
+        icon: const ImageIcon(AssetImage("assets/icons/service.png"),
+            color: Colors.white),
+        label: "Other services"),
   ];
+
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-    physics: const BouncingScrollPhysics(),
-    crossAxisCount: 3,
-    mainAxisSpacing: 8,
-    padding: const EdgeInsets.all(5),
-    children: List.generate(homeIcons.length, (index) {
-    return Card(
-    elevation: 2,
-    color: const Color(0xff1aa6f6),
-    child: InkWell(
-    splashColor: Colors.white60,
-    onTap: () {
-Get.to(()=>const SublistPage(),arguments: index);
-    },
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-    homeIcons[index].icon,
-    //ImageIcon(Image.asset("assets/icons/crm.png")),
-    Text(homeIcons[index].label,style: const TextStyle(color: Colors.white),),
-    ],
-    ),
-    ),
-    );
-    }),
+      physics: const BouncingScrollPhysics(),
+      crossAxisCount: 3,
+      mainAxisSpacing: 8,
+      padding: const EdgeInsets.all(5),
+      children: List.generate(homeIcons.length, (index) {
+        return Card(
+          elevation: 2,
+          color: const Color(0xff1aa6f6),
+          child: InkWell(
+            splashColor: Colors.white60,
+            onTap: () {
+              Get.to(() => const SublistPage(), arguments: index);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  homeIcons[index].icon,
+                  //ImageIcon(Image.asset("assets/icons/crm.png")),
+                  Text(
+                    homeIcons[index].label,
+                    style: const TextStyle(color: Colors.white,fontSize: 13),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
     );
   }
 }
