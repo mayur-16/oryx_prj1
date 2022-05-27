@@ -14,8 +14,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  const Text("ORYX ALUMINIUM"),
-        centerTitle: true,
+        title: Image.asset("assets/oryx_logo.jpeg",height:50,width: 120,fit: BoxFit.contain,) ,
+        //centerTitle: true,
+        //bottom: PreferredSize(child: Image.asset("assets/oryx_logo.jpeg",height: 70,width: 120), preferredSize: Size.fromHeight(70))
       ),
       drawer: const HomeDrawer(),
       body: const BodyWidget(),

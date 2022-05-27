@@ -6,6 +6,7 @@ import 'package:oryx_prj1/pages/subpages/crm/billsNpayments.dart';
 import 'package:oryx_prj1/pages/subpages/crm/complaintsNenqueries.dart';
 import 'package:oryx_prj1/pages/subpages/hr/applyfordoc.dart';
 import 'package:oryx_prj1/pages/subpages/hr/applyforleavehr.dart';
+import 'package:oryx_prj1/pages/subpages/hr/wagesheetpage.dart';
 
 import 'pages/subpages/crm/customer_profile.dart';
 import 'pages/subpages/crm/ordersNschedules.dart';
@@ -47,6 +48,7 @@ void main(){
       GetPage(name: "/Deliveryeshowroom", page: ()=>const Deliveryeshowroom()),
       GetPage(name: "/BillsNpaymentshowroom", page: ()=>const BillsNpaymentshowroom()),
       GetPage(name: "/TimeNattendenceHr", page: ()=>const TimeNattendenceHr()),
+      GetPage(name: "/WageSheetHr", page: ()=>const WageSheetPageHr()),
       GetPage(name: "/JobwiseallocationHr", page: ()=>JobwiseallocationHr()),
       GetPage(name: "/LossofPayHr", page: ()=>LossofPayHr()),
       GetPage(name: "/PayslipHr", page: ()=>PayslipHr()),
