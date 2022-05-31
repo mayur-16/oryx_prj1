@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:oryx_prj1/models/appdetails.dart';
 
 import 'models/sublistitems.dart';
 
@@ -23,7 +24,12 @@ class _SublistPageState extends State<SublistPage> {
 
       //backgroundColor: Colors.pinkAccent.shade100,
       appBar: AppBar(
-        title: Text(sublistpageitems.elementAt(indexval).pagetitle),
+        title: Column(
+          children: [
+            Image.asset(AppDetails.logopath,fit: BoxFit.fitWidth,height: 35,),
+            Text(sublistpageitems.elementAt(indexval).pagetitle),
+          ],
+        ),
         centerTitle: true,
       ),
       body: pageitemsnamesval.isNotEmpty

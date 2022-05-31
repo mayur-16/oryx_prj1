@@ -9,7 +9,7 @@ class SublistPageItem{
 
 
 List<SublistPageItem> sublistpageitems=[
-  SublistPageItem(pagetitle: "CRM", pageitemsnames: [
+  SublistPageItem(pagetitle: "Customer Relationship", pageitemsnames: [
     'Bills & Payments',
     'Complaints & Enqueries',
     'Customer Profile',
@@ -20,17 +20,17 @@ List<SublistPageItem> sublistpageitems=[
     '/CustomerProfileCrm',
     '/OrdersNschedulesCrm'
   ]),
-  
-  SublistPageItem(pagetitle: "SUPPLY CHAIN",
+
+  SublistPageItem(pagetitle: "Purchase & Supply chain",
       pageitemsnames: [],
       redirectpages: [
       ]),
 
-  SublistPageItem(pagetitle: "PROJECTS",
+  SublistPageItem(pagetitle: "Fabrication projects",
       pageitemsnames: [],
       redirectpages: []),
 
-  SublistPageItem(pagetitle: "E-SHOWROOM",
+  SublistPageItem(pagetitle: "Trading",
       pageitemsnames: ['Product Profile', 'E-cart', 'Delivery', 'Bills & Payments'],
       redirectpages: [
         '/ProductprofileEshowroom',
@@ -38,13 +38,14 @@ List<SublistPageItem> sublistpageitems=[
         '/Deliveryeshowroom',
         '/BillsNpaymentshowroom'
       ]),
-  
-  SublistPageItem(pagetitle: "WMS", pageitemsnames: [],
-      redirectpages: [],
+
+  SublistPageItem(pagetitle: "Materials & Warehouse", pageitemsnames: [],
+    redirectpages: [],
   ),
-  
-  SublistPageItem(pagetitle: "HR", pageitemsnames: [
+
+  SublistPageItem(pagetitle: "Human resource", pageitemsnames: [
     'Time & Attendence',
+    'Wage Sheet',
     'Jobwise Allocation',
     'Loss of Pay',
     'Pay Slip',
@@ -53,6 +54,7 @@ List<SublistPageItem> sublistpageitems=[
     'Apply for Document'
   ], redirectpages: [
     '/TimeNattendenceHr',
+    '/WageSheetHr',
     '/JobwiseallocationHr',
     '/LossofPayHr',
     '/PayslipHr',
@@ -61,8 +63,16 @@ List<SublistPageItem> sublistpageitems=[
     '/ApplyfordocHr'
   ]),
 
-  SublistPageItem(pagetitle: "MMP", pageitemsnames: [], redirectpages: []),
+  SublistPageItem(pagetitle: "Finance Reports", pageitemsnames: [], redirectpages: []),
 
-  SublistPageItem(pagetitle: "SMC", pageitemsnames: [], redirectpages: []),
+  SublistPageItem(pagetitle: "Kitchen fittings", pageitemsnames: [], redirectpages: []),
+
+  SublistPageItem(pagetitle: "Wooden coating", pageitemsnames: [], redirectpages: []),
+
+  SublistPageItem(pagetitle: "Powder coating", pageitemsnames: [], redirectpages: []),
+
+  SublistPageItem(pagetitle: "Management reports", pageitemsnames: [], redirectpages: []),
+
+  SublistPageItem(pagetitle: "Other Services", pageitemsnames: [], redirectpages: []),
 ];
 
