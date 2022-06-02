@@ -41,12 +41,7 @@ class _HomePageState extends State<HomePage> {
         //bottom: PreferredSize(child: Image.asset("assets/oryx_logo.jpeg",height: 70,width: 120), preferredSize: Size.fromHeight(70))
       ),
       drawer:  HomeDrawer(data: widget.logindata,),
-      body: Column(
-        children: [
-          Image.asset(AppDetails.logopath,height: 50,width: 70),
-          const Expanded(child: BodyWidget()),
-        ],
-      ),
+      body: const BodyWidget(),
     );
 
   }

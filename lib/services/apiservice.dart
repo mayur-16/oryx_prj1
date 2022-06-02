@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
+import 'package:oryx_prj1/models/customer.dart';
 
 import '../models/monthlytimecard.dart';
 import '../models/usercredentials.dart';
@@ -149,6 +150,18 @@ abstract class MyApi{
       return <Recordsetoftimecard>[];
     }
 
+  }
+
+
+  // GET ALL CUSTOMER DETAILS
+  static Future<Customer> getAllCustomerDetails()async{
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getallcustomers"))
+        .timeout(const Duration(seconds: 10));
+
+    Customer customer = customerFromJson(response.body);
+
+    return customer;
   }
 
 
