@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
 import 'package:oryx_prj1/models/customer.dart';
 
+import '../models/customerdetails.dart';
 import '../models/monthlytimecard.dart';
 import '../models/usercredentials.dart';
 
@@ -156,7 +157,8 @@ abstract class MyApi{
   // GET ALL CUSTOMER DETAILS
   static Future<Customer> getAllCustomerDetails()async{
 
-    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getallcustomers"))
+    String yearnow=DateTime.now().year.toString();
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getallcustomers/$yearnow"))
         .timeout(const Duration(seconds: 10));
 
     Customer customer = customerFromJson(response.body);
@@ -164,6 +166,18 @@ abstract class MyApi{
     return customer;
   }
 
+
+  // GET FULL CUSTOMER DETAILS FROM PCODE
+  static Future<CustomerFullDetails> getFullCustomerDetails({required String pcode})async{
+
+    String yearnow=DateTime.now().year.toString();
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getcustomerdetails/$pcode/$yearnow"))
+        .timeout(const Duration(seconds: 10));
+
+    CustomerFullDetails customerDetails=customerDetailsFromJson(response.body);
+
+    return customerDetails;
+  }
 
 
 }

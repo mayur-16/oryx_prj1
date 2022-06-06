@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oryx_prj1/models/appdetails.dart';
+import 'package:oryx_prj1/pages/subpages/crm/customerlistpage.dart';
 
 import 'models/sublistitems.dart';
 
@@ -15,6 +16,21 @@ class _SublistPageState extends State<SublistPage> {
 
   int indexval=Get.arguments;
   List<String> pageitemsnamesval=[];
+
+
+  @override
+  void initState() {
+    super.initState();
+    if(indexval==0){
+
+      ///if clicked on crm go to customerlist page instead of sublistpage
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.off(()=>const CustomerListPage());
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     pageitemsnamesval=sublistpageitems.elementAt(indexval).pageitemsnames;

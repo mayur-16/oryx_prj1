@@ -9,7 +9,7 @@ class SublistPageItem{
 
 
 List<SublistPageItem> sublistpageitems=[
-  SublistPageItem(pagetitle: "Customer Relationship", pageitemsnames: [
+/*  SublistPageItem(pagetitle: "Customer Relationship", pageitemsnames: [
     'Bills & Payments',
     'Complaints & Enqueries',
     'Customer Profile',
@@ -19,7 +19,9 @@ List<SublistPageItem> sublistpageitems=[
     '/ComplaintsNenqueriesCrm',
     '/CustomerProfileCrm',
     '/OrdersNschedulesCrm'
-  ]),
+  ]),*/
+
+SublistPageItem(pagetitle: "Customer list", pageitemsnames: [], redirectpages: []),
 
   SublistPageItem(pagetitle: "Purchase & Supply chain",
       pageitemsnames: [],
