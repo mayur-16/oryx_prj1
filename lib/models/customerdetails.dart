@@ -32,6 +32,11 @@ class RecordsetofCustomerDetails {
     required this.add2,
     required this.add3,
     required this.mobile,
+    required this.pobox,
+    required this.fax1,
+    required this.remarks,
+    required this.tax1No,
+    required this.email,
     required this.crBal,
     required this.dbBal,
     required this.opbal,
@@ -44,9 +49,14 @@ class RecordsetofCustomerDetails {
   String add2;
   String add3;
   String mobile;
+  String pobox;
+  String fax1;
+  String remarks;
+  String tax1No;
+  String email;
   double crBal;
   double dbBal;
-  int opbal;
+  double opbal;
   int crLimit;
   String glcode;
 
@@ -56,9 +66,14 @@ class RecordsetofCustomerDetails {
     add2: json["ADD2"],
     add3: json["ADD3"],
     mobile: json["MOBILE"],
+    pobox: json["POBOX"],
+    fax1: json["FAX1"],
+    remarks: json["REMARKS"],
+    tax1No: json["TAX_1_NO"],
+    email: json["EMAIL"],
     crBal: json["CR_BAL"].toDouble(),
     dbBal: json["DB_BAL"].toDouble(),
-    opbal: json["OPBAL"],
+    opbal: json["OPBAL"].toDouble(),
     crLimit: json["CR_LIMIT"],
     glcode: json["GLCODE"],
   );
@@ -69,6 +84,11 @@ class RecordsetofCustomerDetails {
     "ADD2": add2,
     "ADD3": add3,
     "MOBILE": mobile,
+    "POBOX": pobox,
+    "FAX1": fax1,
+    "REMARKS": remarks,
+    "TAX_1_NO": tax1No,
+    "EMAIL":email,
     "CR_BAL": crBal,
     "DB_BAL": dbBal,
     "OPBAL": opbal,
