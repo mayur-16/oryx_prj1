@@ -7,7 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
 import 'package:oryx_prj1/models/customer.dart';
+import 'package:oryx_prj1/models/customer_enqueries.dart';
+import 'package:oryx_prj1/models/customer_orders.dart';
+import 'package:oryx_prj1/models/customer_payments.dart';
 
+import '../models/customer_bills.dart';
 import '../models/customerdetails.dart';
 import '../models/monthlytimecard.dart';
 import '../models/usercredentials.dart';
@@ -177,6 +181,54 @@ abstract class MyApi{
     CustomerFullDetails customerDetails=customerDetailsFromJson(response.body);
 
     return customerDetails;
+  }
+
+
+  // GET ORDERS FROM PCODE
+  static Future<CustomerOrders> getCustomerOrders({required String pcode})async{
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getorders/$pcode"))
+        .timeout(const Duration(seconds: 10));
+
+    CustomerOrders customerOrders=customerOrdersFromJson(response.body);
+
+    return customerOrders;
+  }
+
+
+  // GET BILLS FROM PCODE
+  static Future<CustomerBills> getCustomerBills({required String pcode})async{
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getbills/$pcode"))
+        .timeout(const Duration(seconds: 10));
+
+    CustomerBills customerBills=customerBillsFromJson(response.body);
+
+    return customerBills;
+  }
+
+
+  // GET PAYMENTS FROM PCODE
+  static Future<CustomerPayments> getCustomerPayments({required String pcode})async{
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getpayments/$pcode"))
+        .timeout(const Duration(seconds: 10));
+
+    CustomerPayments customerPayments=customerPaymentsFromJson(response.body);
+
+    return customerPayments;
+  }
+
+
+  // GET ENQUERIES FROM PCODE
+  static Future<CustomerEnqueries> getCustomerEnqueries({required String pcode})async{
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getenqueries/$pcode"))
+        .timeout(const Duration(seconds: 10));
+
+    CustomerEnqueries customerEnqueries= customerEnqueriesFromJson(response.body);
+
+    return customerEnqueries;
   }
 
 

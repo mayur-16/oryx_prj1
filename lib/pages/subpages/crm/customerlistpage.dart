@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:oryx_prj1/pages/subpages/crm/customerdetailspage.dart';
+import 'package:oryx_prj1/pages/subpages/crm/customerdetails/customerdetailspage.dart';
 
 import '../../../models/customer.dart';
 import '../../../services/apiservice.dart';

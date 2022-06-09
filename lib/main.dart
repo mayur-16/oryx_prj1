@@ -82,7 +82,8 @@ dovalidation() async {
   }
 
 
-  runApp( GetMaterialApp(
+
+  runApp(GetMaterialApp(
     theme: ThemeData(
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
