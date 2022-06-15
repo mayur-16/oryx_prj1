@@ -34,6 +34,8 @@ class CustomerPaymentsPage extends StatelessWidget {
                 List<RecordsetofCustomerPayments> data=snapshot.data!.recordset;
 
                 if(data.isEmpty){
+
+
                   return const Center(child: Text("No Payments Found"),);
                 }
                 else {
@@ -41,11 +43,16 @@ class CustomerPaymentsPage extends StatelessWidget {
                     physics: const BouncingScrollPhysics(),
                     itemCount: data.length,
                     itemBuilder: (_,index){
-                      String dateinString="${data.elementAt(index).refdt.day}-${data.elementAt(index).refdt.month}-${data.elementAt(index).refdt.year}";
+
+                      String dateinString=data.elementAt(index).refdt.isBefore(DateTime(2000))?"---":
+                      "${data.elementAt(index).refdt.day}-${data.elementAt(index).refdt.month}-${data.elementAt(index).refdt.year}";
+
+
                       return ListTile(
-                        leading: Text("Refno :\n${data[index].refno}",style: const TextStyle(fontSize: 12),),
-                        title: Text("BHD. ${data[index].refamount}",style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
-                        trailing: Text(dateinString,style: const TextStyle(fontSize: 12),),
+                        title: Text("Refno : ${data[index].refno}",style: const TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
+                        subtitle: Text(data[index].description.isEmpty?"--":data[index].description,style: const TextStyle(fontSize: 12,),maxLines: 3,),
+                        trailing: Text("BHD. ${data[index].refamount}",style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
+                        leading: Text(dateinString,style: const TextStyle(fontSize: 12),),
                       );
                     },
                     separatorBuilder: (_,index) {

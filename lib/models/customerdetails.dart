@@ -57,7 +57,7 @@ class RecordsetofCustomerDetails {
   double crBal;
   double dbBal;
   double opbal;
-  int crLimit;
+  double crLimit;
   String glcode;
 
   factory RecordsetofCustomerDetails.fromJson(Map<String, dynamic> json) => RecordsetofCustomerDetails(
@@ -74,7 +74,7 @@ class RecordsetofCustomerDetails {
     crBal: json["CR_BAL"].toDouble(),
     dbBal: json["DB_BAL"].toDouble(),
     opbal: json["OPBAL"].toDouble(),
-    crLimit: json["CR_LIMIT"],
+    crLimit: json["CR_LIMIT"].toDouble(),
     glcode: json["GLCODE"],
   );
 

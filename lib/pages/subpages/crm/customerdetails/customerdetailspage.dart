@@ -225,6 +225,15 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             ],
                           ),
 
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Aging :',style: lablestyle1,),
+                              Text('',style: valuestyle1,),
+                            ],
+                          ),
+
                           const SizedBox(height: 50)
                         ],
                       ),

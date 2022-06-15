@@ -43,9 +43,10 @@ class CustomerBillsPage extends StatelessWidget {
                     itemBuilder: (_,index){
                       String dateinString="${data.elementAt(index).invDate.day}-${data.elementAt(index).invDate.month}-${data.elementAt(index).invDate.year}";
                       return ListTile(
-                        leading: Text("Invno :\n${data[index].invNo}",style: const TextStyle(fontSize: 12),),
-                        title: Text("BHD. ${data[index].amount}",style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
-                        trailing: Text(dateinString,style: const TextStyle(fontSize: 12),),
+                        title: Text("Invno : ${data[index].invNo}",style: const TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
+                        trailing: Text("BHD. ${data[index].amount}",style: const TextStyle(fontSize: 14),),
+                        subtitle: Text(data[index].description,style: const TextStyle(fontSize: 12),maxLines: 3,),
+                        leading: Text(dateinString,style: const TextStyle(fontSize: 12),),
                       );
                     },
                     separatorBuilder: (_,index) {

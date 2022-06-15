@@ -40,11 +40,15 @@ class CustomerOrdersPage extends StatelessWidget {
                   return ListView.separated(
                     physics: const BouncingScrollPhysics(),
                     itemCount: data.length,
+
                     itemBuilder: (_,index){
                       String dateinString="${data.elementAt(index).sodate.day}-${data.elementAt(index).sodate.month}-${data.elementAt(index).sodate.year}";
                       return ListTile(
-                        title: Text("Sono: ${data[index].sono}",style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
-                        trailing: Text(dateinString,style: const TextStyle(fontSize: 12),),
+                        leading: Text("Sono: ${data[index].sono}",style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
+                        title: Text(dateinString,style: const TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black45),),
+                        subtitle: Text(data[index].subject.isEmpty?"---":data[index].subject,style: const TextStyle(fontSize: 11)),
+                        trailing: Text("Bd. ${data[index].total}",style: const TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
+                        onTap: (){},
                       );
                     },
                     separatorBuilder: (_,index) {

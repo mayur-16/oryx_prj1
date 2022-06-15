@@ -31,21 +31,25 @@ class RecordsetofCustomerBills {
     required this.invNo,
     required this.amount,
     required this.invDate,
+    required this.description,
   });
 
   String invNo;
   double amount;
   DateTime invDate;
+  String description;
 
   factory RecordsetofCustomerBills.fromJson(Map<String, dynamic> json) => RecordsetofCustomerBills(
     invNo: json["INV_NO"],
     amount: json["AMOUNT"].toDouble(),
     invDate: DateTime.parse(json["INV_DATE"]),
+    description: json["DESCRIPTION"],
   );
 
   Map<String, dynamic> toJson() => {
     "INV_NO": invNo,
     "AMOUNT": amount,
     "INV_DATE": invDate.toIso8601String(),
+    "DESCRIPTION":description
   };
 }

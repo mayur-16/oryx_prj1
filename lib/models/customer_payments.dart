@@ -30,21 +30,30 @@ class RecordsetofCustomerPayments {
     required this.refno,
     required this.refdt,
     required this.refamount,
+    required this.lpono,
+    required this.description,
   });
 
   String refno;
   DateTime refdt;
   double refamount;
+  String lpono;
+  String description;
 
   factory RecordsetofCustomerPayments.fromJson(Map<String, dynamic> json) => RecordsetofCustomerPayments(
     refno: json["REFNO"],
     refdt: DateTime.parse(json["REFDT"]),
     refamount: json["REFAMOUNT"].toDouble(),
+    lpono: json["LPO_NO"],
+    description:json["DESCRIPTION"],
   );
 
   Map<String, dynamic> toJson() => {
     "REFNO": refno,
     "REFDT": refdt.toIso8601String(),
     "REFAMOUNT": refamount,
+    "LPO_NO": lpono,
+    "DESCRIPTION": description,
   };
 }
+

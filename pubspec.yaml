@@ -31,11 +31,11 @@ dependencies:
     sdk: flutter
   http: ^0.13.4
   geolocator: ^8.2.1
-  google_maps_flutter: ^2.1.6
+  google_maps_flutter: ^2.1.7
   get: ^4.6.5
   google_fonts: ^3.0.1
   pdf: ^3.8.1
-  path_provider: ^2.0.10
+  path_provider: ^2.0.11
   open_file: ^3.2.1
   month_picker_dialog: ^0.4.0
   easy_pdf_viewer: ^1.0.2
@@ -45,7 +45,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.4
+  cupertino_icons: ^1.0.5
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +70,7 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+
   assets:
    - assets/
    - assets/icons/

@@ -30,18 +30,28 @@ class RecordsetofCustomerOrders {
   RecordsetofCustomerOrders({
     required this.sono,
     required this.sodate,
+    required this.subject,
+    required this.total,
   });
 
   String sono;
   DateTime sodate;
+  String subject;
+  double total;
 
   factory RecordsetofCustomerOrders.fromJson(Map<String, dynamic> json) => RecordsetofCustomerOrders(
     sono: json["SONO"],
     sodate: DateTime.parse(json["SODATE"]),
+    subject: json["SUBJECT"],
+    total: json["TOTAL"].toDouble(),
   );
 
   Map<String, dynamic> toJson() => {
     "SONO": sono,
     "SODATE": sodate.toIso8601String(),
+    "SUBJECT": subject,
+    "TOTAL": total,
   };
 }
+
+
