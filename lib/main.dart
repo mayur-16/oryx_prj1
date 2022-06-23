@@ -7,8 +7,20 @@ import 'package:oryx_prj1/pages/home/homepage.dart';
 import 'package:oryx_prj1/pages/login/loginpage.dart';
 import 'package:oryx_prj1/pages/subpages/crm/billsNpayments.dart';
 import 'package:oryx_prj1/pages/subpages/crm/complaintsNenqueries.dart';
+import 'package:oryx_prj1/pages/subpages/crm/customerlistpage.dart';
+import 'package:oryx_prj1/pages/subpages/fabrication/all_jobslist_page.dart';
+import 'package:oryx_prj1/pages/subpages/finance_reports/finance_reports_page.dart';
 import 'package:oryx_prj1/pages/subpages/hr/applyfordoc.dart';
 import 'package:oryx_prj1/pages/subpages/hr/applyforleavehr.dart';
+import 'package:oryx_prj1/pages/subpages/hr/hr_page.dart';
+import 'package:oryx_prj1/pages/subpages/kitchen_fittings/kitchen_fittings_page.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/management_reports_page.dart';
+import 'package:oryx_prj1/pages/subpages/other_services/other_services_page.dart';
+import 'package:oryx_prj1/pages/subpages/powder_coating/powder_coating_page.dart';
+import 'package:oryx_prj1/pages/subpages/purchase&supply_chain/supplierlistpage.dart';
+import 'package:oryx_prj1/pages/subpages/trading/trading_page.dart';
+import 'package:oryx_prj1/pages/subpages/wms/warehouse_and_materials_page.dart';
+import 'package:oryx_prj1/pages/subpages/wooden_coating/wooden_coating_page.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'pages/subpages/crm/customer_profile.dart';
@@ -117,6 +129,19 @@ dovalidation() async {
       GetPage(name: "/ApplyforleaveHr", page: ()=>const ApplyforleaveHr()),
       GetPage(name: "/ApplyfordocHr", page: ()=>const ApplyfordocHr()),
       GetPage(name: "/WageSheetHr", page: ()=>const WageSheetPageHr()),
+
+      GetPage(name: "/CustomerlistCrmpage", page: ()=>const CustomerListPage()),
+      GetPage(name: "/Supplierlistpage", page: ()=>const SupplierListPage()),
+      GetPage(name: "/Fabricationpage", page: ()=>const AllJobsListPage()),
+      GetPage(name: "/Tradingpage", page: ()=>const TradingPage()),
+      GetPage(name: "/Warehousepage", page: ()=>const WarehousePage()),
+      GetPage(name: "/Humanresourcepage", page: ()=>const HumanResourcePage()),
+      GetPage(name: "/Financereportspage", page: ()=>const FinanceReportsPage()),
+      GetPage(name: "/Kitchenfittingspage", page: ()=>const KitchenFittingsPage()),
+      GetPage(name: "/Woodencoatingpage", page: ()=>const WoodenCoatingPage()),
+      GetPage(name: "/Powdercoatingpage", page: ()=>const PowderCoatingPage()),
+      GetPage(name: "/Managementreportspage", page: ()=>const ManagementReportsPage()),
+      GetPage(name: "/Otherservicespage", page: ()=>const OtherServicesPage()),
 
     ],
   ));

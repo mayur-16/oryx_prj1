@@ -6,10 +6,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
+import 'package:oryx_prj1/models/alljobs.dart';
 import 'package:oryx_prj1/models/customer.dart';
 import 'package:oryx_prj1/models/customer_enqueries.dart';
 import 'package:oryx_prj1/models/customer_orders.dart';
 import 'package:oryx_prj1/models/customer_payments.dart';
+import 'package:oryx_prj1/models/jobdetails.dart';
+import 'package:oryx_prj1/models/jobslist.dart';
+import 'package:oryx_prj1/models/supplier.dart';
+import 'package:oryx_prj1/models/supplierdetails.dart';
 
 import '../models/customer_bills.dart';
 import '../models/customerdetails.dart';
@@ -178,7 +183,7 @@ abstract class MyApi{
     http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getcustomerdetails/$pcode/$yearnow"))
         .timeout(const Duration(seconds: 10));
 
-    CustomerFullDetails customerDetails=customerDetailsFromJson(response.body);
+    CustomerFullDetails customerDetails=customerFullDetailsFromJson(response.body);
 
     return customerDetails;
   }
@@ -230,6 +235,76 @@ abstract class MyApi{
 
     return customerEnqueries;
   }
+
+
+  // GET ALL SUPPLIER DETAILS
+  static Future<Supplier> getAllSuppliersDetails()async{
+
+    String yearnow=DateTime.now().year.toString();
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getAllSuppliers/$yearnow"))
+        .timeout(const Duration(seconds: 10));
+
+    Supplier supplier = supplierFromJson(response.body);
+
+    return supplier;
+  }
+
+
+  // GET FULL SUPPLIER DETAILS FROM PCODE
+  static Future<SupplierFullDetails> getFullSupplierDetails({required String pcode})async{
+
+    String yearnow=DateTime.now().year.toString();
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getsupplierdetails/$pcode/$yearnow"))
+        .timeout(const Duration(seconds: 10));
+
+    SupplierFullDetails supplierFullDetails=supplierDetailsFromJson(response.body);
+
+
+    return supplierFullDetails;
+  }
+
+
+  // GET ALL JOBS OF THE YEAR
+  static Future<AllJobs> getAlljobsoftheyear()async{
+
+    String yearnow=DateTime.now().year.toString();
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getallJobs/$yearnow"))
+        .timeout(const Duration(seconds: 10));
+
+    AllJobs allJobs=allJobsFromJson(response.body);
+
+
+    return allJobs;
+  }
+
+
+  // GET LIST OF JOBS FROM PCODE
+  static Future<JobsList> getListofjobsofcustomer({required String pcode})async{
+
+    String yearnow=DateTime.now().year.toString();
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/listofjobsofcustomer/$pcode/$yearnow"))
+        .timeout(const Duration(seconds: 10));
+
+    JobsList jobsList=jobsListFromJson(response.body);
+
+
+    return jobsList;
+  }
+
+
+  // GET JOBS DETAILS FROM JOB NO
+  static Future<JobDetails> getjobDetailsfromJobno({required String jobno})async{
+
+    String yearnow=DateTime.now().year.toString();
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getfulljobdetails/$jobno/$yearnow"))
+        .timeout(const Duration(seconds: 10));
+
+    JobDetails jobDetails=jobDetailsFromJson(response.body);
+
+
+    return jobDetails;
+  }
+
 
 
 }

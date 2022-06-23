@@ -1,28 +1,23 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:oryx_prj1/models/appdetails.dart';
-import 'package:oryx_prj1/models/customerdetails.dart';
-import 'package:oryx_prj1/pages/subpages/crm/customerdetails/customer_bills_page.dart';
-import 'package:oryx_prj1/pages/subpages/crm/customerdetails/customer_enquiries_page.dart';
-import 'package:oryx_prj1/pages/subpages/crm/customerdetails/customer_orders_page.dart';
-import 'package:oryx_prj1/pages/subpages/crm/customerdetails/customer_payments_page.dart';
+import 'package:oryx_prj1/models/supplierdetails.dart';
 import 'package:oryx_prj1/services/apiservice.dart';
 
-class CustomerDetails extends StatefulWidget {
+class SupplierDetails extends StatefulWidget {
   final String pcode;
-  final String customername;
+  final String suppliername;
 
-  const CustomerDetails(
-      {Key? key, required this.pcode, required this.customername})
+  const SupplierDetails(
+      {Key? key, required this.pcode, required this.suppliername})
       : super(key: key);
 
   @override
-  State<CustomerDetails> createState() => _CustomerDetailsState();
+  State<SupplierDetails> createState() => _SupplierDetailsState();
 }
 
-class _CustomerDetailsState extends State<CustomerDetails> {
+class _SupplierDetailsState extends State<SupplierDetails> {
   
   TextStyle lablestyle1=const TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Color(
       0xff566573));
@@ -37,10 +32,10 @@ class _CustomerDetailsState extends State<CustomerDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.customername),
+        title: Text(widget.suppliername),
       ),
-      body: FutureBuilder<CustomerFullDetails>(
-          future: MyApi.getFullCustomerDetails(pcode: widget.pcode),
+      body: FutureBuilder<SupplierFullDetails>(
+          future: MyApi.getFullSupplierDetails(pcode: widget.pcode),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -52,7 +47,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                 return const Center(
                     child: Text("Some issues please try again"));
               } else if (snapshot.hasData) {
-                List<RecordsetofCustomerDetails> datalist =
+                List<RecordsetofSupplierDetails> datalist =
                     snapshot.data!.recordset;
 
                 if (datalist.isEmpty) {
@@ -60,9 +55,9 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                     child: Text("No Customers Found"),
                   );
                 } else {
-                  RecordsetofCustomerDetails data = datalist.first;
+                  RecordsetofSupplierDetails data = datalist.first;
 
-                  //double currentbal = data.opbal + data.netBalance - data.invBalance;
+                  double currentbal = data.opbal + data.dbBal - data.crBal;
 
                   return SingleChildScrollView(
                     child: Padding(
@@ -125,7 +120,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Mobile no :',style: lablestyle1,),
-                              Text(data.phone1.isEmpty?'---':data.phone1,style: valuestyle1,),
+                              Text(data.mobile.isEmpty?'---':data.mobile,style: valuestyle1,),
                             ],
                           ),
 
@@ -185,7 +180,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Opening Balance BD. :',style: lablestyle1,),
-                              Text(data.opbal.toStringAsFixed(3),style: valuestyle1,),
+                              Text(data.opbal.toString(),style: valuestyle1,),
                             ],
                           ),
 
@@ -194,7 +189,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Payments BD. :',style: lablestyle1,),
-                              Text(data.invBalance.toStringAsFixed(3),style: valuestyle1,),
+                              Text(data.crBal.toString(),style: valuestyle1,),
                             ],
                           ),
 
@@ -203,7 +198,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Billed BD :',style: lablestyle1,),
-                              Text(data.invBalance.toStringAsFixed(3),style: valuestyle1,),
+                              Text(data.dbBal.toString(),style: valuestyle1,),
                             ],
                           ),
 
@@ -212,7 +207,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Current Balance BD :',style: lablestyle1,),
-                              Text(data.netBalance.toStringAsFixed(3),style: valuestyle1,),
+                              Text(currentbal.toString(),style: valuestyle1,),
                             ],
                           ),
 
@@ -226,19 +221,11 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                           ),
 
 
-                          Text('Aging :',style: lablestyle1,),
-                          const SizedBox(height: 15),
-
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('30 days\n${data.m30Days}',style: valuestyle1,textAlign: TextAlign.center,),
-                              Text('60 days\n${data.m60Days}',style: valuestyle1,textAlign: TextAlign.center,),
-                              Text('90 days\n${data.m90Days}',style: valuestyle1,textAlign: TextAlign.center,),
-                              Text('120 days\n${data.m120Days}',style: valuestyle1,textAlign: TextAlign.center,),
-                              Text('180 days\n${data.m180Days}',style: valuestyle1,textAlign: TextAlign.center,),
-                              Text('365 days\n${data.m365Days}',style: valuestyle1,textAlign: TextAlign.center,),
-
+                              Text('Aging :',style: lablestyle1,),
+                              Text('',style: valuestyle1,),
                             ],
                           ),
 
@@ -258,25 +245,25 @@ class _CustomerDetailsState extends State<CustomerDetails> {
           ElevatedButton(
               style: buttonstyle1,
               onPressed: () {
-                Get.to(()=>CustomerBillsPage(pcode: widget.pcode));
+                ///Get.to(()=>CustomerBillsPage(pcode: widget.pcode));
               },
               child: const Text("Bills")),
           ElevatedButton(
               style: buttonstyle1,
               onPressed: () {
-                Get.to(()=>CustomerPaymentsPage(pcode: widget.pcode));
+                //Get.to(()=>CustomerPaymentsPage(pcode: widget.pcode));
               },
               child: const Text("Payments")),
           ElevatedButton(
               style: buttonstyle1,
               onPressed: () {
-                Get.to(()=>CustomerOrdersPage(pcode: widget.pcode));
+                ///Get.to(()=>CustomerOrdersPage(pcode: widget.pcode));
               },
               child: const Text("Orders")),
           ElevatedButton(
               style: buttonstyle1,
               onPressed: () {
-                Get.to(()=>CustomerEnquiriesPage(pcode: widget.pcode));
+                //Get.to(()=>CustomerEnquiriesPage(pcode: widget.pcode));
               },
               child: const Text("Enquiries")),
         ],

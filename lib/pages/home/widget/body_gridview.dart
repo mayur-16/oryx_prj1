@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:oryx_prj1/sublistpage.dart';
 
 import '../podos/homeicon.dart';
 
@@ -16,51 +15,63 @@ class _BodyWidgetState extends State<BodyWidget> {
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/crm.png"),
             color: Colors.white),
-        label: "Customer relationship"),
+        label: "Customer relationship",
+    pageroute: "CustomerlistCrmpage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/supplychain.png"),
             color: Colors.white),
-        label: "Purchase &\nSupply chain"),
+        label: "Purchase &\nSupply chain",
+        pageroute: "Supplierlistpage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/project.png"),
             color: Colors.white),
-        label: "Fabrication projects"),
+        label: "Fabrication projects",
+        pageroute: "Fabricationpage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/showroom.png"),
             color: Colors.white),
-        label: "Trading"),
+        label: "Trading",
+        pageroute: "Tradingpage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/warehouse.png"),
             color: Colors.white),
-        label: "Materials &\nWarehouse"),
+        label: "Materials &\nWarehouse",
+        pageroute: "Warehousepage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/hr.png"),
             color: Colors.white),
-        label: "Human resource"),
+        label: "Human resource",
+        pageroute: "Humanresourcepage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/maintenance.png"),
             color: Colors.white),
-        label: "Finance Reports"),
+        label: "Finance Reports",
+        pageroute: "Financereportspage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/service.png"),
             color: Colors.white),
-        label: "Kitchen fittings"),
+        label: "Kitchen fittings",
+        pageroute: "Kitchenfittingspage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/service.png"),
             color: Colors.white),
-        label: "Wooden coating"),
+        label: "Wooden coating",
+        pageroute: "Woodencoatingpage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/service.png"),
             color: Colors.white),
-        label: "Powder coating"),
+        label: "Powder coating",
+        pageroute: "Powdercoatingpage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/service.png"),
             color: Colors.white),
-        label: "Management reports"),
+        label: "Management reports",
+        pageroute: "Managementreportspage"),
     HomeIcon(
         icon: const ImageIcon(AssetImage("assets/icons/service.png"),
             color: Colors.white),
-        label: "Other services"),
+        label: "Other services",
+        pageroute: "Otherservicespage"),
   ];
 
   @override
@@ -77,7 +88,8 @@ class _BodyWidgetState extends State<BodyWidget> {
           child: InkWell(
             splashColor: Colors.white,
             onTap: () {
-              Get.to(() => const SublistPage(), arguments: index);
+              Get.toNamed(homeIcons[index].pageroute);
+              //Get.to(() => const SublistPage(), arguments: index);
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 10),

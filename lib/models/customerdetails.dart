@@ -1,12 +1,12 @@
 // To parse this JSON data, do
 //
-//     final customerDetails = customerDetailsFromJson(jsonString);
+//     final customerFullDetails = customerFullDetailsFromJson(jsonString);
 
 import 'dart:convert';
 
-CustomerFullDetails customerDetailsFromJson(String str) => CustomerFullDetails.fromJson(json.decode(str));
+CustomerFullDetails customerFullDetailsFromJson(String str) => CustomerFullDetails.fromJson(json.decode(str));
 
-String customerDetailsToJson(CustomerFullDetails data) => json.encode(data.toJson());
+String customerFullDetailsToJson(CustomerFullDetails data) => json.encode(data.toJson());
 
 class CustomerFullDetails {
   CustomerFullDetails({
@@ -14,6 +14,7 @@ class CustomerFullDetails {
   });
 
   List<RecordsetofCustomerDetails> recordset;
+
 
   factory CustomerFullDetails.fromJson(Map<String, dynamic> json) => CustomerFullDetails(
     recordset: List<RecordsetofCustomerDetails>.from(json["recordset"].map((x) => RecordsetofCustomerDetails.fromJson(x))),
@@ -25,57 +26,97 @@ class CustomerFullDetails {
 }
 
 
+
 class RecordsetofCustomerDetails {
   RecordsetofCustomerDetails({
     required this.custName,
     required this.add1,
     required this.add2,
     required this.add3,
-    required this.mobile,
     required this.pobox,
+    required this.phone1,
+    required this.phone2,
     required this.fax1,
-    required this.remarks,
-    required this.tax1No,
+    required this.fax2,
     required this.email,
-    required this.crBal,
-    required this.dbBal,
-    required this.opbal,
-    required this.crLimit,
+    required this.contact,
+    required this.tax1No,
     required this.glcode,
+    required this.creditperiod,
+    required this.crLimit,
+    required this.opbal,
+    required this.remarks,
+    required this.reportEndDate,
+    required this.m30Days,
+    required this.m60Days,
+    required this.m90Days,
+    required this.m120Days,
+    required this.m180Days,
+    required this.m365Days,
+    required this.above365Days,
+    required this.invBalance,
+    required this.unallocBalance,
+    required this.netBalance,
   });
 
   String custName;
   String add1;
   String add2;
   String add3;
-  String mobile;
   String pobox;
+  String phone1;
+  String phone2;
   String fax1;
-  String remarks;
-  String tax1No;
+  String fax2;
   String email;
-  double crBal;
-  double dbBal;
-  double opbal;
-  double crLimit;
+  String contact;
+  String tax1No;
   String glcode;
+  int creditperiod;
+  int crLimit;
+  double opbal;
+  String remarks;
+  String reportEndDate;
+  int m30Days;
+  int m60Days;
+  int m90Days;
+  int m120Days;
+  int m180Days;
+  int m365Days;
+  double above365Days;
+  double invBalance;
+  int unallocBalance;
+  double netBalance;
 
   factory RecordsetofCustomerDetails.fromJson(Map<String, dynamic> json) => RecordsetofCustomerDetails(
     custName: json["CUST_NAME"],
     add1: json["ADD1"],
     add2: json["ADD2"],
     add3: json["ADD3"],
-    mobile: json["MOBILE"],
     pobox: json["POBOX"],
+    phone1: json["PHONE1"],
+    phone2: json["PHONE2"],
     fax1: json["FAX1"],
-    remarks: json["REMARKS"],
-    tax1No: json["TAX_1_NO"],
+    fax2: json["FAX2"],
     email: json["EMAIL"],
-    crBal: json["CR_BAL"].toDouble(),
-    dbBal: json["DB_BAL"].toDouble(),
-    opbal: json["OPBAL"].toDouble(),
-    crLimit: json["CR_LIMIT"].toDouble(),
+    contact: json["CONTACT"],
+    tax1No: json["TAX_1_NO"],
     glcode: json["GLCODE"],
+    creditperiod: json["CREDITPERIOD"],
+    crLimit: json["CR_LIMIT"],
+    opbal: json["OPBAL"].toDouble(),
+    remarks: json["REMARKS"],
+    reportEndDate: json["REPORT_END_DATE"],
+    m30Days: json["M_30_DAYS"],
+    m60Days: json["M_60_DAYS"],
+    m90Days: json["M_90_DAYS"],
+    m120Days: json["M_120_DAYS"],
+    m180Days: json["M_180_DAYS"],
+    m365Days: json["M_365_DAYS"],
+    above365Days: json["ABOVE_365_DAYS"].toDouble(),
+    invBalance: json["INV_BALANCE"].toDouble(),
+    unallocBalance: json["UNALLOC_BALANCE"],
+    netBalance: json["NET_BALANCE"].toDouble(),
   );
 
   Map<String, dynamic> toJson() => {
@@ -83,16 +124,29 @@ class RecordsetofCustomerDetails {
     "ADD1": add1,
     "ADD2": add2,
     "ADD3": add3,
-    "MOBILE": mobile,
     "POBOX": pobox,
+    "PHONE1": phone1,
+    "PHONE2": phone2,
     "FAX1": fax1,
-    "REMARKS": remarks,
+    "FAX2": fax2,
+    "EMAIL": email,
+    "CONTACT": contact,
     "TAX_1_NO": tax1No,
-    "EMAIL":email,
-    "CR_BAL": crBal,
-    "DB_BAL": dbBal,
-    "OPBAL": opbal,
-    "CR_LIMIT": crLimit,
     "GLCODE": glcode,
+    "CREDITPERIOD": creditperiod,
+    "CR_LIMIT": crLimit,
+    "OPBAL": opbal,
+    "REMARKS": remarks,
+    "REPORT_END_DATE": reportEndDate,
+    "M_30_DAYS": m30Days,
+    "M_60_DAYS": m60Days,
+    "M_90_DAYS": m90Days,
+    "M_120_DAYS": m120Days,
+    "M_180_DAYS": m180Days,
+    "M_365_DAYS": m365Days,
+    "ABOVE_365_DAYS": above365Days,
+    "INV_BALANCE": invBalance,
+    "UNALLOC_BALANCE": unallocBalance,
+    "NET_BALANCE": netBalance,
   };
 }
