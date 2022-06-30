@@ -12,6 +12,8 @@ import 'package:oryx_prj1/models/customer_enqueries.dart';
 import 'package:oryx_prj1/models/customer_orders.dart';
 import 'package:oryx_prj1/models/customer_payments.dart';
 import 'package:oryx_prj1/models/jobdetails.dart';
+import 'package:oryx_prj1/models/jobexpensedetails.dart';
+import 'package:oryx_prj1/models/jobincomedetails.dart';
 import 'package:oryx_prj1/models/jobslist.dart';
 import 'package:oryx_prj1/models/supplier.dart';
 import 'package:oryx_prj1/models/supplierdetails.dart';
@@ -306,5 +308,73 @@ abstract class MyApi{
   }
 
 
+  // GET JOBS INCOME DETAILS FROM JOB NO
+  static Future<JobIncomeDetails> getjobIncomeDetailsfromJobno({required String jobno,required String glcode})async{
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getjobincomedetails/$jobno/$glcode"))
+        .timeout(const Duration(seconds: 10));
+
+    JobIncomeDetails jobIncomeDetails=jobIncomeDetailsFromJson(response.body);
+
+
+    return jobIncomeDetails;
+  }
+
+
+  // GET JOBS Expense DETAILS FROM JOB NO
+  static Future<JobExpenseDetails> getjobExpenseDetailsfromJobno({required String jobno})async{
+
+    String yearnow=DateTime.now().year.toString();
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getjobexpensedetails/$jobno/$yearnow"))
+        .timeout(const Duration(seconds: 10));
+
+    JobExpenseDetails jobExpenseDetails=jobExpenseDetailsFromJson(response.body);
+
+
+    return jobExpenseDetails;
+  }
+
+
+  // GET TOTAL OF JOBS INCOME FROM JOB NO
+  static Future<double> gettotalofjobIncomefromJobno({required String jobno,required String glcode})async{
+
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/gettotalofjobincome/$jobno/$glcode"))
+        .timeout(const Duration(seconds: 10));
+
+    if(response.statusCode==200){
+      double totalincome=(jsonDecode(response.body))['recordset'].first.value;
+      log(totalincome.toString(),name: "total income");
+
+      return totalincome;
+    }else {
+      return 0.000;
+    }
+
+  }
+
+  // GET TOTAL OF JOBS EXPENSE FROM JOB NO
+  static Future<double> gettotalofjobExpensefromJobno({required String jobno})async{
+
+    String yearnow=DateTime.now().year.toString();
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/gettotalofjobexpense/$jobno/$yearnow"))
+        .timeout(const Duration(seconds: 10));
+
+
+    if(response.statusCode==200){
+      double totalexpense=(jsonDecode(response.body))['recordset'].first.value;
+      log(totalexpense.toString(),name: "total expense");
+
+      return totalexpense;
+    }else {
+      return 0.000;
+    }
+
+  }
+
 
 }
+
+

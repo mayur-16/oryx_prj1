@@ -62,9 +62,9 @@ class RecordsetofJobdetails {
   String salesman;
   String salesmanPhone1;
   String salesmanEmailId;
-  int initialJobValue;
-  int netJobValue;
-  int estimatedValue;
+  double initialJobValue;
+  double netJobValue;
+  double estimatedValue;
 
   factory RecordsetofJobdetails.fromJson(Map<String, dynamic> json) => RecordsetofJobdetails(
     jobno: json["JOBNO"],
@@ -82,9 +82,9 @@ class RecordsetofJobdetails {
     salesman: json["SALESMAN"],
     salesmanPhone1: json["SALESMAN_PHONE1"],
     salesmanEmailId: json["SALESMAN_EMAIL_ID"],
-    initialJobValue: json["INITIAL_JOB_VALUE"],
-    netJobValue: json["NET_JOB_VALUE"],
-    estimatedValue: json["ESTIMATED_VALUE"],
+    initialJobValue: json["INITIAL_JOB_VALUE"].toDouble(),
+    netJobValue: json["NET_JOB_VALUE"].toDouble(),
+    estimatedValue: json["ESTIMATED_VALUE"].toDouble(),
   );
 
   Map<String, dynamic> toJson() => {

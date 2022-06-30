@@ -1,7 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:oryx_prj1/models/jobdetails.dart';
+import 'package:oryx_prj1/pages/subpages/fabrication/job_expense_pdf_page.dart';
+import 'package:oryx_prj1/pages/subpages/fabrication/job_income_pdf_page.dart';
 
 import '../../../models/appdetails.dart';
 import '../../../services/apiservice.dart';
@@ -20,6 +23,8 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
       fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xff566573));
   TextStyle valuestyle1 = TextStyle(
       fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey.shade600);
+
+  late RecordsetofJobdetails data;
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +46,15 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                 return const Center(
                     child: Text("Some issues please try again"));
               } else if (snapshot.hasData) {
-                List<RecordsetofJobdetails> data = snapshot.data!.recordset;
+                List<RecordsetofJobdetails> listofdata =
+                    snapshot.data!.recordset;
 
-                if (data.isEmpty) {
+                if (listofdata.isEmpty) {
                   return const Center(
                     child: Text("Job details not found"),
                   );
                 } else {
-                  RecordsetofJobdetails data = snapshot.data!.recordset.first;
+                  data = snapshot.data!.recordset.first;
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(12, 4, 12, 8),
                     child: Column(
@@ -167,11 +173,14 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                               'Customer name :',
                               style: lablestyle1,
                             ),
-                            Text(
-                              data.custName.isEmpty
-                                  ? '---'
-                                  : '${data.title} ${data.custName}',
-                              style: valuestyle1,
+                            Flexible(
+                              child: Text(
+                                data.custName.isEmpty
+                                    ? '---'
+                                    : '${data.title} ${data.custName}',
+                                style: valuestyle1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ],
                         ),
@@ -183,9 +192,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                               style: lablestyle1,
                             ),
                             Text(
-                              data.custPhone1.isEmpty
-                                  ? '---'
-                                  : data.custPhone1,
+                              data.custPhone1.isEmpty ? '---' : data.custPhone1,
                               style: valuestyle1,
                             ),
                           ],
@@ -211,9 +218,12 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                               'GL name:',
                               style: lablestyle1,
                             ),
-                            Text(
-                              data.glName.isEmpty ? '---' : data.glName,
-                              style: valuestyle1,
+                            Flexible(
+                              child: Text(
+                                data.glName.isEmpty ? '---' : data.glName,
+                                style: valuestyle1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ],
                         ),
@@ -299,7 +309,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20)
+                        const SizedBox(height: 50)
                       ],
                     ),
                   );
@@ -308,6 +318,19 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
             }
             return const SizedBox();
           }),
+      bottomSheet: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          OutlinedButton(
+              onPressed: () async {
+                Get.to(() => JobIncomePdfPage(data: data));
+              },
+              child: const Text("Income")),
+          OutlinedButton(onPressed: () async {
+            Get.to(() => JobExpensePdfPage(data: data));
+          }, child: const Text("Expenses")),
+        ],
+      ),
     );
   }
 }

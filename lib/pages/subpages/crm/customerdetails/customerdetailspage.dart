@@ -60,6 +60,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                     child: Text("No Customers Found"),
                   );
                 } else {
+
                   RecordsetofCustomerDetails data = datalist.first;
 
                   //double currentbal = data.opbal + data.netBalance - data.invBalance;
