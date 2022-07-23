@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:month_year_picker/month_year_picker.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'dart:developer';
 
 import 'package:oryx_prj1/pages/home/homepage.dart';
@@ -14,7 +16,7 @@ import 'package:oryx_prj1/pages/subpages/hr/applyfordoc.dart';
 import 'package:oryx_prj1/pages/subpages/hr/applyforleavehr.dart';
 import 'package:oryx_prj1/pages/subpages/hr/hr_page.dart';
 import 'package:oryx_prj1/pages/subpages/kitchen_fittings/kitchen_fittings_page.dart';
-import 'package:oryx_prj1/pages/subpages/management_reports/management_reports_page.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/all_departments_list_page.dart';
 import 'package:oryx_prj1/pages/subpages/other_services/other_services_page.dart';
 import 'package:oryx_prj1/pages/subpages/powder_coating/powder_coating_page.dart';
 import 'package:oryx_prj1/pages/subpages/purchase&supply_chain/supplierlistpage.dart';
@@ -111,6 +113,11 @@ dovalidation() async {
       ),
     ),
     debugShowCheckedModeBanner: false,
+    localizationsDelegates:  const [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      MonthYearPickerLocalizations.delegate,
+    ],
     home:  isLoggedIn?  HomePage(logindata: logindata.first,):const LoginPage(),
     getPages: [
       GetPage(name: "/BillsNpaymentCrm", page: ()=>const BillsNpaymentCrm()),
@@ -140,7 +147,7 @@ dovalidation() async {
       GetPage(name: "/Kitchenfittingspage", page: ()=>const KitchenFittingsPage()),
       GetPage(name: "/Woodencoatingpage", page: ()=>const WoodenCoatingPage()),
       GetPage(name: "/Powdercoatingpage", page: ()=>const PowderCoatingPage()),
-      GetPage(name: "/Managementreportspage", page: ()=>const ManagementReportsPage()),
+      GetPage(name: "/Managementreportspage", page: ()=>const AllDepartmentsListPage()),
       GetPage(name: "/Otherservicespage", page: ()=>const OtherServicesPage()),
 
     ],

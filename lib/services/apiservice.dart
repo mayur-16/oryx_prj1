@@ -18,9 +18,11 @@ import 'package:oryx_prj1/models/jobslist.dart';
 import 'package:oryx_prj1/models/supplier.dart';
 import 'package:oryx_prj1/models/supplierdetails.dart';
 
+import '../models/alldepartments.dart';
 import '../models/customer_bills.dart';
 import '../models/customerdetails.dart';
 import '../models/monthlytimecard.dart';
+import '../models/salesorderdetails.dart';
 import '../models/usercredentials.dart';
 
 abstract class MyApi{
@@ -371,8 +373,37 @@ abstract class MyApi{
     }else {
       return 0.000;
     }
-
   }
+
+
+
+  // GET ALL DEPARTMENTS FOR MANAGEMENT REPORT
+  static Future<AllDepartments> getAllDepartments() async{
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getAllDepartments"))
+        .timeout(const Duration(seconds: 10));
+
+    AllDepartments allDepartments=allDepartmentsFromJson(response.body);
+
+    return allDepartments;
+  }
+
+
+
+  // GET LIST OF SALES ORDER BY DEPARTMENT ID
+  static Future<SalesOrderDetails> getListofSalesOrderbyDeptid({required String deptid,required String month,required String year})async{
+
+
+    http.Response response=await http.get(Uri.parse("http://15.185.46.105:5005/api/getListofsalesorderByDeptId/$deptid/$month/$year"))
+        .timeout(const Duration(seconds: 10));
+
+    SalesOrderDetails salesOrderDetails=salesOrderDetailsFromJson(response.body);
+
+
+    return salesOrderDetails;
+  }
+
+
 
 
 }
