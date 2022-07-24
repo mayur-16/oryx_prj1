@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oryx_prj1/models/salesorderdetails.dart';
 
-import '../../../services/apiservice.dart';
+import '../../../../services/apiservice.dart';
 
 class SalesOrderDetailsPage extends StatelessWidget {
   final String deptid;

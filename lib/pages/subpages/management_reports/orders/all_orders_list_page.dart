@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oryx_prj1/models/alldepartments.dart';
-import 'package:oryx_prj1/pages/subpages/management_reports/salesorder_details_page.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/orders/salesorder_details_page.dart';
 import 'package:oryx_prj1/services/apiservice.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 import 'dart:developer';
 
-class AllDepartmentsListPage extends StatelessWidget {
-  const AllDepartmentsListPage({Key? key}) : super(key: key);
+class AllOrdesListPage extends StatelessWidget {
+  const AllOrdesListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Management Reports"),
+        title: const Text("Orders"),
         centerTitle: true,
+        bottom: const PreferredSize(preferredSize: Size.fromHeight(2), child: Divider(thickness: 2,height: 2,)),
       ),
       body: FutureBuilder<AllDepartments>(
         future: MyApi.getAllDepartments(),

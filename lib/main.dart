@@ -16,7 +16,15 @@ import 'package:oryx_prj1/pages/subpages/hr/applyfordoc.dart';
 import 'package:oryx_prj1/pages/subpages/hr/applyforleavehr.dart';
 import 'package:oryx_prj1/pages/subpages/hr/hr_page.dart';
 import 'package:oryx_prj1/pages/subpages/kitchen_fittings/kitchen_fittings_page.dart';
-import 'package:oryx_prj1/pages/subpages/management_reports/all_departments_list_page.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/IncomeStatement/incomestatement.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/cashInflow/cashInflow.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/cashOutflow/cashoutflow.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/enqueries/enqueries.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/mis_reports_list_page.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/orders/all_orders_list_page.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/quotation/quotation.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/receipts/receipts.dart';
+import 'package:oryx_prj1/pages/subpages/management_reports/revenueStatement/revenuestatement.dart';
 import 'package:oryx_prj1/pages/subpages/other_services/other_services_page.dart';
 import 'package:oryx_prj1/pages/subpages/powder_coating/powder_coating_page.dart';
 import 'package:oryx_prj1/pages/subpages/purchase&supply_chain/supplierlistpage.dart';
@@ -147,8 +155,20 @@ dovalidation() async {
       GetPage(name: "/Kitchenfittingspage", page: ()=>const KitchenFittingsPage()),
       GetPage(name: "/Woodencoatingpage", page: ()=>const WoodenCoatingPage()),
       GetPage(name: "/Powdercoatingpage", page: ()=>const PowderCoatingPage()),
-      GetPage(name: "/Managementreportspage", page: ()=>const AllDepartmentsListPage()),
+      GetPage(name: "/Managementreportspage", page: ()=>const MisReportsListPage()),
       GetPage(name: "/Otherservicespage", page: ()=>const OtherServicesPage()),
+
+
+      //mis routes
+      GetPage(name: "/Enqueries", page: ()=>const EnqueriesPage()),
+      GetPage(name: "/Quotation", page: ()=>const QuotationPage()),
+      GetPage(name: "/Orders", page: ()=>const AllOrdesListPage()),
+      GetPage(name: "/Receipts", page: ()=>const ReceiptsPage()),
+      GetPage(name: "/CashInflow", page: ()=>const CashInFlowPage()),
+      GetPage(name: "/CashOutflow", page: ()=>const CashOutFlowPage()),
+      GetPage(name: "/RevenueStatement", page: ()=>const RevenueStatementPage()),
+      GetPage(name: "/IncomeStatement", page: ()=>const IncomeStatementPage()),
+
 
     ],
   ));
